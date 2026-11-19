@@ -1,0 +1,26 @@
+name: Deploy HTML Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy website
+        run: |
+          
+          cp index.html /var/www/hello-world/index.html
+          chmod 755 /var/www/hello-world
+          chmod 644 /var/www/hello-world/index.html
+
+      - name: Show deployment status
+        run: |
+          echo "Website deployed successfully!"
+          ls -l /var/www/hello-world/
